@@ -22,6 +22,15 @@ namespace OdeToFood
 
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddCors(options =>
+				options.AddPolicy("AllowAllOrigins",
+					builder =>
+					{
+						builder.AllowAnyOrigin()
+							.AllowAnyMethod()
+							.AllowAnyHeader();
+					}));
+
 			services.AddDbContext<GovCarDbContext>(
 				options => options.UseSqlServer(_configuration.GetConnectionString("CarbaseDataConnection")));
 			services.AddScoped<ICarBaseDataService, CarBaseDataService>();
