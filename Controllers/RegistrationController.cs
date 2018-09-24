@@ -2,6 +2,7 @@
 using System.Linq;
 using carbase;
 using carbase.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using OdeToFood.Services;
 
@@ -34,6 +35,7 @@ namespace OdeToFood.Controllers
 		}
 
 		[HttpGet]
+		[EnableCors("AllowAllOrigins")]
 		public CarInformation Get(string id)
 		{
 			IEnumerable<RegistrationLine> lines = _carBaseDataService.Search(id);
